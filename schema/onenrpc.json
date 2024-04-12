@@ -1,0 +1,95 @@
+{
+  "openrpc": "1.0.0-rc1",
+  "info": {
+    "title": "API Spaceweb",
+    "description": "Документация по API Spaceweb",
+    "version": "1.185"
+  },
+  "servers": [
+    {
+      "name": "Not Authorized",
+      "summary": "Not authorized methods",
+      "description": "Метода, доступные без авторизации",
+      "url": "https://api.sweb.ru/notAthorized"
+    }
+  ],
+  "methods": [
+    {
+      "name": "getToken",
+      "description": "Получение нового токена для авторизации",
+      "params": [
+        {
+          "name": "login",
+          "description": "Логин",
+          "schema": {
+            "$ref": "#/components/schemas/String"
+          },
+          "required": true
+        },
+        {
+          "name": "password",
+          "description": "Пароль",
+          "schema": {
+            "$ref": "#/components/schemas/String"
+          },
+          "required": false
+        }
+      ],
+      "result": {
+        "$ref": "#/components/contentDescriptors/resultLogin"
+      }
+    },
+    {
+      "name": "checkLogin",
+      "description": "Проверка доступности логина для регистрации",
+      "params": [
+        {
+          "name": "login",
+          "description": "Желаемый логин пользователя",
+          "schema": {
+            "$ref": "#/components/schemas/String"
+          },
+          "required": true
+        }
+      ],
+      "result": {
+        "$ref": "#/components/contentDescriptors/resultCheckLogin"
+      }
+    }
+  ],
+  "components": {
+    "contentDescriptors": {
+      "resultInt": {
+        "name": "resultLogin",
+        "description": "Токен для авторизации",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "resultIndex": {
+        "name": "resultCheckLogin",
+        "description": "Результат проверки доступен ли логин",
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schemas": {
+      "Integer": {
+        "type": "integer"
+      },
+      "String": {
+        "type": "string"
+      },
+      "Boolean": {
+        "type": "boolean"
+      },
+      "Array": {
+        "type": "array"
+      },
+      "Object": {
+        "type": "object"
+      }
+    }
+  }
+}
