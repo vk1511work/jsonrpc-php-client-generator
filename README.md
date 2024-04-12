@@ -1,4 +1,4 @@
-# Jsonrpc Php Client Gentrator
+# Jsonrpc Php Client Generator
 
 ## Getting started
 
