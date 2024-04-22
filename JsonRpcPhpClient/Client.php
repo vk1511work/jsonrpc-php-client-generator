@@ -34,11 +34,24 @@ class Client
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, json_encode([
             'jsonrpc' => '2.0',
             'method' => $method,
-            'params' => $params
+            'params' => $params,
+            'id' => 'php-client-'.time().'-'.$this->randomString()
         ]));
         $json = curl_exec($this->ch);
         $result = json_decode($json, true);
         curl_close($this->ch);
         return isset($result['error']) ? new Error($json) : new Success($json);
+    }
+
+    public function randomString( $length = 10 ): string
+    {
+        $str = "";
+        $charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        for($i = 0; $i < $length; $i++)
+        {
+            $random_int = mt_rand();
+            $str .= $charset[$random_int % strlen($charset)];
+        }
+        return $str;
     }
 }
